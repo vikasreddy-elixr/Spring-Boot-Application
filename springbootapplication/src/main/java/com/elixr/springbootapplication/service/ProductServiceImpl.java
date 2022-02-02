@@ -39,11 +39,6 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findById(id).orElseThrow(ProductNotFoundException::new);
     }
 
-//    public FindOperation<Products> findProductByProductNameFromPurchases(String productName, Purchases purchases) {
-//        return productRepository.findProductsByProductNameInPurchases(productName, purchases);
-//
-//    }
-
     @Override
     @Validated
     public Products updateProduct(String id, Products products) {
@@ -56,8 +51,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteProductByProductId(String id) {
-        productRepository.findById(id).orElseThrow(ProductNotFoundException::new);
+    public Products deleteProductByProductId(String id, Products products) {
+        Products targetProduct = productRepository.findById(id).orElseThrow(ProductNotFoundException::new);
         productRepository.deleteById(id);
+        return targetProduct;
     }
 }

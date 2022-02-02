@@ -21,8 +21,5 @@ public class Products {
     private int quantity;
     @NotEmpty
     private int price;
-    //@ManyToMany
-    //    private Purchases purchases;
-    private LocalDateTime localDateAndTime = LocalDateTime.now();
-
+    private LocalDateTime date = LocalDateTime.now();
 }

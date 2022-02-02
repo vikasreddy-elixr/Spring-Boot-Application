@@ -10,11 +10,9 @@ public interface ProductService {
 
     List<Products> findAllProducts();
 
-    Products findProductByProductId(String productId);
+    Products findProductByProductId(String id);
 
-    //Products findProductByProductNameFromPurchases(productName, purchases);
+    Products updateProduct(String id, Products products);
 
-    Products updateProduct(String productId, Products products);
-
-    void deleteProductByProductId(String productId);
+    Products deleteProductByProductId(String id, Products products);
 }
