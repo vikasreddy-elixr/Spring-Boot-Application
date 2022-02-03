@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<?> resourceNotFoundHandling() {
+    public ResponseEntity<?> handleResourceNotFound() {
         ErrorResponse errorDetails =
                 new ErrorResponse(Constants.FAILED, Constants.DATA_NOT_FOUND);
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<?> IllegalStateExceptionHandling() {
+    public ResponseEntity<?> handleIllegalStateException() {
         ErrorResponse errorDetails =
                 new ErrorResponse(Constants.FAILED, Constants.ARGUMENTS_NOT_FOUND);
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
@@ -27,7 +27,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    public ResponseEntity<?> deleteExceptionHandling() {
+    public ResponseEntity<?> handleDeleteException() {
         ErrorResponse errorDetails =
                 new ErrorResponse(Constants.FAILED, Constants.DELETE_ALL_USER);
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
