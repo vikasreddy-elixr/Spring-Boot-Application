@@ -11,9 +11,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="com.example.springbootapplication" target="11" />
-      <module name="com.example.springbootapplication.main" target="11" />
-      <module name="com.example.springbootapplication.test" target="11" />
+      <module name="com.example.springbootapplication" target="17" />
+      <module name="com.example.springbootapplication.main" target="17" />
+      <module name="com.example.springbootapplication.test" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

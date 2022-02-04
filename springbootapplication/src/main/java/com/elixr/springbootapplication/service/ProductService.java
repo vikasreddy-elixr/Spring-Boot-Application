@@ -1,18 +1,18 @@
 package com.elixr.springbootapplication.service;
 
-import com.elixr.springbootapplication.model.Products;
+import com.elixr.springbootapplication.model.Product;
 
 import java.util.List;
 
 public interface ProductService {
 
-    void addNewProducts(Products products);
+    void addNewProduct(Product product);
 
-    List<Products> findAllProducts();
+    List<Product> findAllProducts();
 
-    Products findProductByProductId(String id);
+    Product findProductByProductId(String id);
 
-    Products updateProduct(String id, Products products);
+    Product updateProduct(String id, Product product);
 
-    Products deleteProductByProductId(String id, Products products);
+    Product deleteProductByProductId(String id);
 }

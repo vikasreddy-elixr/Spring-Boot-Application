@@ -1,16 +1,19 @@
 package com.elixr.springbootapplication.controller;
 
-import com.elixr.springbootapplication.constants.AllConstants;
-import com.elixr.springbootapplication.model.Products;
-import com.elixr.springbootapplication.responses.Responses;
+import com.elixr.springbootapplication.constants.Constants;
+import com.elixr.springbootapplication.model.Product;
+import com.elixr.springbootapplication.responses.SuccessResponse;
 import com.elixr.springbootapplication.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@Validated
 public class ProductController {
 
     private final ProductService productService;
@@ -20,37 +23,37 @@ public class ProductController {
     }
 
     @PostMapping("/products")
-    public ResponseEntity<?> addProducts(@RequestBody Products products) {
-        productService.addNewProducts(products);
-        return new ResponseEntity<>(new Responses(AllConstants.OPERATION_SUCCESS, products), HttpStatus.OK);
+    public ResponseEntity<?> addProduct(@RequestBody @Valid Product product) {
+        productService.addNewProduct(product);
+        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, product), HttpStatus.OK);
     }
 
     @GetMapping("/products")
     public ResponseEntity<?> getAllProducts() {
 
-        List<Products> productsList = productService.findAllProducts();
-        return new ResponseEntity<>(new Responses(AllConstants.OPERATION_SUCCESS, productsList), HttpStatus.OK);
+        List<Product> productsList = productService.findAllProducts();
+        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, productsList), HttpStatus.OK);
     }
 
     @GetMapping("/products/{productId}")
     public ResponseEntity<?> getProductByProductId(@PathVariable(value = "productId") String id) {
 
-        Products targetProduct = productService.findProductByProductId(id);
-        return new ResponseEntity<>(new Responses(AllConstants.OPERATION_SUCCESS, targetProduct), HttpStatus.OK);
+        Product targetProduct = productService.findProductByProductId(id);
+        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, targetProduct), HttpStatus.OK);
     }
 
     @PatchMapping("/products/{productId}")
-    public ResponseEntity<?> patchProduct(@PathVariable("productId") String id, @RequestBody Products products) {
+    public ResponseEntity<?> patchProduct(@PathVariable("productId") String id, @RequestBody @Valid Product product) {
 
-        Products updatedProduct = productService.updateProduct(id, products);
-        return new ResponseEntity<>(new Responses(AllConstants.OPERATION_SUCCESS, updatedProduct), HttpStatus.OK);
+        Product updatedProduct = productService.updateProduct(id, product);
+        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, updatedProduct), HttpStatus.OK);
     }
 
     @DeleteMapping("/products/{productId}")
-    public ResponseEntity<?> deleteProduct(@PathVariable("productId") String id, @RequestBody Products products) {
+    public ResponseEntity<?> deleteProduct(@PathVariable("productId") String id) {
 
-        Products deleteProduct = productService.deleteProductByProductId(id,products);
-        return new ResponseEntity<>(new Responses(AllConstants.OPERATION_SUCCESS, deleteProduct), HttpStatus.OK);
+        Product deletedProduct = productService.deleteProductByProductId(id);
+        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, deletedProduct), HttpStatus.OK);
 
     }
 }
