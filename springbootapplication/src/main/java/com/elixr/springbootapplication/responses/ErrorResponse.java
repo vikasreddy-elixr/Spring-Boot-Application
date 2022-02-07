@@ -1,9 +1,9 @@
 package com.elixr.springbootapplication.responses;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Builder;
 
-@Data
+@Builder
 @AllArgsConstructor
 public class ErrorResponse {
 
