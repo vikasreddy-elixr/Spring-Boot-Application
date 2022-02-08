@@ -1,3 +1,11 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
 HELP.md
 .gradle
 build/
@@ -23,7 +31,6 @@ bin/
 *.iml
 *.ipr
 out/
-.idea/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
@@ -36,4 +43,3 @@ out/
 
 ### VS Code ###
 .vscode/
-
