@@ -1,4 +1,4 @@
-package com.elixr.training.springboot;
+package com.elixr.springbootapplication;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,6 +1,7 @@
-package com.elixr.training.springboot.Service;
+package com.elixr.springbootapplication.service;
 
-import com.elixr.training.springboot.Model.User;
+import com.elixr.springbootapplication.model.User;
+
 import java.util.List;
 
 public interface UserService {
@@ -13,5 +14,6 @@ public interface UserService {
 
     User updateUser(User user, String id);
 
-    void deleteUser(String id);
+    User deleteUser(String id);
 }
+

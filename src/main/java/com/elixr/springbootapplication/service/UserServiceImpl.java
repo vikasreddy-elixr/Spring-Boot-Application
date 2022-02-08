@@ -1,10 +1,11 @@
-package com.elixr.training.springboot.Service;
+package com.elixr.springbootapplication.service;
 
-import com.elixr.training.springboot.Constants.Constants;
-import com.elixr.training.springboot.Dao.UserRepository;
-import com.elixr.training.springboot.ExceptionHandler.ResourceNotFoundException;
-import com.elixr.training.springboot.Model.User;
+import com.elixr.springbootapplication.constants.Constants;
+import com.elixr.springbootapplication.dao.UserRepository;
+import com.elixr.springbootapplication.model.User;
+import com.elixr.springbootapplication.exceptionhandler.NotFoundException;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -19,7 +20,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user) {
-        return userRepo.save(user);
+        return userRepo.insert(user);
     }
 
     @Override
@@ -29,27 +30,25 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(String id) {
-        return userRepo.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException(Constants.USER_NOT_FOUND + id));
+        return userRepo.findById(id).orElseThrow(() -> new NotFoundException(Constants.ERROR_NOT_FOUND));
     }
 
     @Override
     public User updateUser(User user, String id) {
-        User existingUser = userRepo.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException(Constants.USER_NOT_FOUND + id));
+        User existingUser = userRepo.findById(id).orElseThrow(() -> new NotFoundException(Constants.ERROR_NOT_FOUND));
         existingUser.setUserName(user.getUserName());
         existingUser.setFirstName(user.getFirstName());
         existingUser.setLastName(user.getLastName());
         userRepo.save(existingUser);
         return existingUser;
-
     }
 
     @Override
-    public void deleteUser(String id) {
-        userRepo.findById(id).orElseThrow(() ->
-                new ResourceNotFoundException(Constants.USER_NOT_FOUND + id));
+    public User deleteUser(String id) {
+        User deletedUser = userRepo.findById(id).orElseThrow(() -> new NotFoundException(Constants.ERROR_NOT_FOUND));
         userRepo.deleteById(id);
+        return deletedUser;
     }
 }
+
 

@@ -1,8 +1,8 @@
-package com.elixr.training.springboot.Model;
+package com.elixr.springbootapplication.model;
 
 import lombok.Data;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
@@ -14,15 +14,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
-    @NotEmpty
-    @Indexed
-    @Column(nullable = false)
+    @NotEmpty(message = "userName is a mandatory field")
     private String userName;
 
-    @NotEmpty
+    @NotEmpty(message = "firstName is a mandatory field")
     private String firstName;
 
-    @NotEmpty
+    @NotEmpty(message = "lastName is a mandatory field")
     private String lastName;
 
 }
