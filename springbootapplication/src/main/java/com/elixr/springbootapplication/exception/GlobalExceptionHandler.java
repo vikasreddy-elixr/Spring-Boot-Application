@@ -1,4 +1,4 @@
-package com.elixr.springbootapplication.exceptionhandler;
+package com.elixr.springbootapplication.exception;
 
 import com.elixr.springbootapplication.constants.Constants;
 import com.elixr.springbootapplication.responses.ErrorResponse;
@@ -19,7 +19,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<ErrorResponse> handleNotFoundException(NotFoundException exception) {
-        return new ResponseEntity<>(buildErrorResponse(exception.getMessage()), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(buildErrorResponse(exception.getLocalizedMessage()), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
@@ -32,8 +32,13 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(buildErrorResponse(Objects.requireNonNull(exception.getFieldError()).getDefaultMessage()), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler({HttpMessageNotReadableException.class, HttpRequestMethodNotSupportedException.class})
-    public ResponseEntity<ErrorResponse> handleHttpMessageNotReadableException() {
+    @ExceptionHandler({HttpMessageNotReadableException.class})
+    public ResponseEntity<?> handleHttpMessageNotReadableException() {
+        return new ResponseEntity<>(buildErrorResponse(Constants.ERROR_BAD_REQUEST), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler({HttpRequestMethodNotSupportedException.class})
+    public ResponseEntity<?> handleHttpRequestMethodNotSupportedException() {
         return new ResponseEntity<>(buildErrorResponse(Constants.ERROR_BAD_REQUEST), HttpStatus.BAD_REQUEST);
     }
 
