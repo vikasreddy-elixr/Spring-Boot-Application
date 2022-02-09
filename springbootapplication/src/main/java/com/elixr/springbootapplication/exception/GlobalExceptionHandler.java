@@ -48,6 +48,6 @@ public class GlobalExceptionHandler {
     }
 
     private ErrorResponse buildErrorResponse(String message) {
-        return ErrorResponse.builder().success(Constants.FAILURE).errorMessage(message).build();
+        return ErrorResponse.builder().success(Constants.FAILURE).message(message).build();
     }
 }

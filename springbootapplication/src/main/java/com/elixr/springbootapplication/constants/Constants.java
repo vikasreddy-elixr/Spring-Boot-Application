@@ -1,5 +1,6 @@
 package com.elixr.springbootapplication.constants;
 
+
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

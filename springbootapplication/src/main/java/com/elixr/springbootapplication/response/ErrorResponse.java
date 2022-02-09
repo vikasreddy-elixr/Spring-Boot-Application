@@ -4,10 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+@Builder
 @Data
 @AllArgsConstructor
-@Builder
 public class ErrorResponse {
+
     private String success;
-    private String errorMessage;
+    private String message;
 }
