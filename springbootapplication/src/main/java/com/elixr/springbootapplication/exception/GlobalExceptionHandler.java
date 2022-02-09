@@ -1,4 +1,4 @@
-package com.elixr.springbootapplication.exceptionhandler;
+package com.elixr.springbootapplication.exception;
 
 import com.elixr.springbootapplication.constants.Constants;
 import com.elixr.springbootapplication.responses.ErrorResponse;

@@ -1,7 +1,7 @@
 package com.elixr.springbootapplication.service;
 
 import com.elixr.springbootapplication.constants.Constants;
-import com.elixr.springbootapplication.exceptionhandler.NotFoundException;
+import com.elixr.springbootapplication.exception.NotFoundException;
 import com.elixr.springbootapplication.model.Product;
 import com.elixr.springbootapplication.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
