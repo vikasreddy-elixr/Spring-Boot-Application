@@ -47,8 +47,8 @@ public class PurchaseController {
         return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, isProductDeleted), HttpStatus.OK);
     }
 
-    @PatchMapping("purchases/{id}")
-    public ResponseEntity<?> patchPurchase(@PathVariable String id, @Valid Purchase purchases) {
-        return ResponseEntity.ok(purchaseService.patchPurchase(id, purchases));
+    @PatchMapping("purchases/{purchaseId}")
+    public ResponseEntity<?> patchPurchase(@PathVariable String purchaseId, @Valid Purchase purchases) {
+        return ResponseEntity.ok(purchaseService.patchPurchase(purchaseId, purchases));
     }
 }
