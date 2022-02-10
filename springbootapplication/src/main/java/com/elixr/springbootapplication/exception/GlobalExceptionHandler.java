@@ -1,7 +1,7 @@
 package com.elixr.springbootapplication.exception;
 
 import com.elixr.springbootapplication.constants.Constants;
-import com.elixr.springbootapplication.response.ErrorResponse;
+import com.elixr.springbootapplication.responses.ErrorResponse;
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
