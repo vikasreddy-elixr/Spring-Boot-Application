@@ -1,4 +1,4 @@
-package com.elixr.springbootapplication.exceptionhandler;
+package com.elixr.springbootapplication.exception;
 
 import com.elixr.springbootapplication.constants.Constants;
 import com.elixr.springbootapplication.response.ErrorResponse;
@@ -51,3 +51,4 @@ public class GlobalExceptionHandler {
         return ErrorResponse.builder().success(Constants.FAILURE).message(message).build();
     }
 }
+

@@ -3,10 +3,11 @@ package com.elixr.springbootapplication.service;
 import com.elixr.springbootapplication.constants.Constants;
 import com.elixr.springbootapplication.dao.UserRepository;
 import com.elixr.springbootapplication.model.User;
-import com.elixr.springbootapplication.exceptionhandler.NotFoundException;
+import com.elixr.springbootapplication.exception.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -44,11 +45,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User deleteUser(String id) {
-        User deletedUser = userRepo.findById(id).orElseThrow(() -> new NotFoundException(Constants.ERROR_NOT_FOUND));
-        userRepo.deleteById(id);
-        return deletedUser;
+    public void deleteUser(String id) {
+        if (userRepo.existsById(id)) {
+            userRepo.deleteById(id);
+        } else {
+            throw (new NotFoundException(Constants.ERROR_NOT_FOUND));
+        }
     }
 }
+
 
 
