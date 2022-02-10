@@ -51,3 +51,4 @@ public class GlobalExceptionHandler {
         return ErrorResponse.builder().success(Constants.FAILURE).message(message).build();
     }
 }
+

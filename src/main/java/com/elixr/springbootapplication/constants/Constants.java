@@ -12,3 +12,4 @@ public class Constants {
     public static final String ERROR_BAD_REQUEST = "Request cannot be fulfilled due to bad syntax";
     public static final String ERROR_UNEXPECTED_TYPE = "Unexpected internal server error";
 }
+
