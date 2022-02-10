@@ -1,4 +1,4 @@
-package com.elixr.springbootapplication.purchasecontroller;
+package com.elixr.springbootapplication.controller;
 
 
 import com.elixr.springbootapplication.constants.Constants;
