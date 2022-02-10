@@ -1,7 +1,7 @@
 package com.elixr.springbootapplication.exception;
 
 import com.elixr.springbootapplication.constants.Constants;
-import com.elixr.springbootapplication.response.ErrorResponse;
+import com.elixr.springbootapplication.responses.ErrorResponse;
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,6 +48,6 @@ public class GlobalExceptionHandler {
     }
 
     private ErrorResponse buildErrorResponse(String message) {
-        return ErrorResponse.builder().success(Constants.FAILURE).errorMessage(message).build();
+        return ErrorResponse.builder().success(Constants.FAILURE).message(message).build();
     }
 }
