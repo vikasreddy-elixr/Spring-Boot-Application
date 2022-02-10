@@ -42,9 +42,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product deleteProductByProductId(String id) {
-        Product targetProduct = productRepository.findById(id).orElseThrow(() -> new NotFoundException(Constants.ERROR_NOT_FOUND));
-        productRepository.deleteById(id);
-        return targetProduct;
+    public String deleteProductByProductId(String id) {
+        Boolean doesTargetProductExist = productRepository.existsById(id);
+        if(doesTargetProductExist) {
+            productRepository.deleteById(id);
+            return Constants.PROMPT_PRODUCT_SUCCESSFUL_DELETION;
+        } else {
+            throw new NotFoundException(Constants.ERROR_NOT_FOUND);
+        }
     }
 }
