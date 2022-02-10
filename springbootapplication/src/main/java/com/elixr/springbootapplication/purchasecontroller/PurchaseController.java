@@ -20,35 +20,35 @@ import javax.validation.Valid;
 
 @RestController
 public class PurchaseController {
-    private final PurchaseService services;
+    private final PurchaseService purchaseService;
 
-    public PurchaseController(PurchaseService services) {
-        this.services = services;
+    public PurchaseController(PurchaseService purchaseService) {
+        this.purchaseService = purchaseService;
     }
 
     @PostMapping("purchases")
-    public ResponseEntity<?> createPurchase(@Valid @RequestBody Purchase purchases) {
-        return services.postPurchase(purchases);
+    public ResponseEntity<?> createPurchase(@Valid @RequestBody Purchase purchase) {
+        return purchaseService.postPurchase(purchase);
     }
 
     @GetMapping("purchases")
     public ResponseEntity<?> getPurchases() {
-        return services.getPurchases();
+        return purchaseService.getPurchases();
     }
 
     @GetMapping("purchases/{purchaseId}")
     public ResponseEntity<?> getByPurchaseId(@PathVariable("purchaseId") String id) {
-        return services.getPurchaseById(id);
+        return purchaseService.getPurchaseById(id);
     }
 
     @DeleteMapping("purchases/{purchaseId}")
     public ResponseEntity<?> deletePurchaseById(@PathVariable String purchaseId) {
-        String isProductDeleted = services.deletePurchaseById(purchaseId);
+        String isProductDeleted = purchaseService.deletePurchaseById(purchaseId);
         return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, isProductDeleted), HttpStatus.OK);
     }
 
     @PatchMapping("purchases/{id}")
     public ResponseEntity<?> patchPurchase(@PathVariable String id, @Valid Purchase purchases) {
-        return ResponseEntity.ok(services.patchPurchase(id, purchases));
+        return ResponseEntity.ok(purchaseService.patchPurchase(id, purchases));
     }
 }
