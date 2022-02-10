@@ -1,4 +1,4 @@
-package com.elixr.springbootapplication.response;
+package com.elixr.springbootapplication.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
