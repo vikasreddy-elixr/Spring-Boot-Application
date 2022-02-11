@@ -6,6 +6,7 @@ build/
 !**/src/test/**/build/
 
 
+
 ### STS ###
 .apt_generated
 .classpath
@@ -18,15 +19,20 @@ bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 
+
+
 ### IntelliJ IDEA ###
 .idea
 *.iws
 *.iml
 *.ipr
-.idea/
+*.xml
 out/
+.idea/
 !**/src/main/**/out/
 !**/src/test/**/out/
+
+
 
 ### NetBeans ###
 /nbproject/private/
@@ -34,6 +40,8 @@ out/
 /dist/
 /nbdist/
 /.nb-gradle/
+
+
 
 ### VS Code ###
 .vscode/
