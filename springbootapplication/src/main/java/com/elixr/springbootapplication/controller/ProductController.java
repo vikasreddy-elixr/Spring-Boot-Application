@@ -2,6 +2,7 @@ package com.elixr.springbootapplication.controller;
 
 import com.elixr.springbootapplication.constants.Constants;
 import com.elixr.springbootapplication.model.Product;
+import com.elixr.springbootapplication.model.Purchase;
 import com.elixr.springbootapplication.responses.SuccessResponse;
 import com.elixr.springbootapplication.service.ProductService;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -46,6 +48,12 @@ public class ProductController {
 
         Product targetProduct = productService.findProductByProductId(id);
         return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, targetProduct), HttpStatus.OK);
+    }
+
+    @GetMapping("/purchases/productName={productName}")
+    public ResponseEntity<?> getProductByProductNameFromPurchases(@PathVariable(value = "productName") String productName) {
+        List<Purchase> targetProducts = productService.findPurchasesByProductName(productName);
+        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, targetProducts), HttpStatus.OK);
     }
 
     @PatchMapping("/products/{productId}")
