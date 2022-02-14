@@ -38,7 +38,7 @@ public class PurchaseService {
         return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, getPurchasesById), HttpStatus.OK);
     }
 
-    public ResponseEntity<?> getByProductName(Optional<String> productName) {
+    public ResponseEntity<?> getPurchaseByProductName(Optional<String> productName) {
         List<Purchase> targetPurchase = purchaseRepository.findPurchasesByProductName(productName);
         if (!targetPurchase.isEmpty()) {
             return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, targetPurchase), HttpStatus.OK);
