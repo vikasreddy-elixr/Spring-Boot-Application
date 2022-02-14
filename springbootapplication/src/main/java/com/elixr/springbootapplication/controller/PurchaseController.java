@@ -3,7 +3,6 @@ package com.elixr.springbootapplication.controller;
 
 import com.elixr.springbootapplication.constants.Constants;
 import com.elixr.springbootapplication.model.Purchase;
-import com.elixr.springbootapplication.model.User;
 import com.elixr.springbootapplication.responses.SuccessResponse;
 import com.elixr.springbootapplication.service.PurchaseService;
 import org.springframework.http.HttpStatus;
@@ -52,8 +51,9 @@ public class PurchaseController {
     public ResponseEntity<?> patchPurchase(@PathVariable String purchaseId, @Valid Purchase purchases) {
         return ResponseEntity.ok(purchaseService.patchPurchase(purchaseId, purchases));
     }
+
     @GetMapping("purchases/userid={userId}")
-    public ResponseEntity<?> getPurchaseByUserId(@PathVariable String userId){
-        return PurchaseService.getPurchaseByUserId(userId);
+    public ResponseEntity<?> getPurchaseByUserId(@PathVariable String userId) {
+        return purchaseService.getPurchaseByUserId(userId);
     }
 }

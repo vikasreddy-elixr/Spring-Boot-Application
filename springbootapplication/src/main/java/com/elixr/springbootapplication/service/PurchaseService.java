@@ -15,16 +15,17 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
-
 @Service
 public class PurchaseService {
-    static PurchaseRepository purchaseRepository;
-    static UserRepository userRepository;
 
-    public PurchaseService(PurchaseRepository purchaseRepository, UserRepository userRepository) {
-        PurchaseService.purchaseRepository = purchaseRepository;
-        PurchaseService.userRepository = userRepository;
+    private final PurchaseRepository purchaseRepository;
+    private final UserRepository userRepository;
+
+    public PurchaseService(UserRepository userRepository, PurchaseRepository purchaseRepository) {
+        this.userRepository = userRepository;
+        this.purchaseRepository = purchaseRepository;
     }
+
 
     public ResponseEntity<?> postPurchase(@Valid Purchase purchase) {
         Purchase postPurchases = purchaseRepository.save(purchase);
@@ -61,10 +62,9 @@ public class PurchaseService {
         return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, purchase), HttpStatus.OK);
     }
 
-
-    public static ResponseEntity<?> getPurchaseByUserId(String userId) {
+    public ResponseEntity<?> getPurchaseByUserId(String userId) {
         User userById = userRepository.findById(userId).orElseThrow(() -> new NotFoundException(Constants.ERROR_NOT_FOUND));
-        String userName=userById.getUserName();
-        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, purchaseRepository.getPurchaseByUserName(userName)),HttpStatus.OK);
-     }
+        String userName = userById.getUserName();
+        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, purchaseRepository.getPurchaseByUserName(userName)), HttpStatus.OK);
+    }
 }
