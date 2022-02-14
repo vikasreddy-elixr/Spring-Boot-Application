@@ -2,7 +2,6 @@ package com.elixr.springbootapplication.controller;
 
 import com.elixr.springbootapplication.constants.Constants;
 import com.elixr.springbootapplication.model.Product;
-import com.elixr.springbootapplication.model.Purchase;
 import com.elixr.springbootapplication.responses.SuccessResponse;
 import com.elixr.springbootapplication.service.ProductService;
 import org.springframework.http.HttpStatus;
