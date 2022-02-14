@@ -3,7 +3,6 @@ package com.elixr.springbootapplication.service;
 import com.elixr.springbootapplication.model.User;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UserService {
 

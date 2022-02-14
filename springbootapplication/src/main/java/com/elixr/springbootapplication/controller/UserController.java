@@ -47,3 +47,4 @@ public class UserController {
         return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, id), HttpStatus.OK);
     }
 }
+
