@@ -5,6 +5,7 @@ import com.elixr.springbootapplication.exception.NotFoundException;
 import com.elixr.springbootapplication.model.Purchase;
 import com.elixr.springbootapplication.repository.PurchaseRepository;
 import com.elixr.springbootapplication.responses.SuccessResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -13,14 +14,11 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
-
 @Service
+@RequiredArgsConstructor
 public class PurchaseService {
-    PurchaseRepository purchaseRepository;
 
-    public PurchaseService(PurchaseRepository purchaseRepository) {
-        this.purchaseRepository = purchaseRepository;
-    }
+    private final PurchaseRepository purchaseRepository;
 
     public ResponseEntity<?> postPurchase(@Valid Purchase purchase) {
         Purchase postPurchases = purchaseRepository.save(purchase);
@@ -65,5 +63,4 @@ public class PurchaseService {
         purchaseRepository.save(purchase);
         return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, purchase), HttpStatus.OK);
     }
-
 }
