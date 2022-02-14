@@ -13,8 +13,6 @@ public interface ProductService {
 
     Product findProductByProductId(String id);
 
-    List<Purchase> findPurchasesByProductName(String productName);
-
     Product updateProduct(String id, Product product);
 
     String deleteProductByProductId(String id);

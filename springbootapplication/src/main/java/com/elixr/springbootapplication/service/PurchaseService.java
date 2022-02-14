@@ -38,6 +38,15 @@ public class PurchaseService {
         return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, getPurchasesById), HttpStatus.OK);
     }
 
+    public List<Purchase> findPurchasesByProductName(Optional<String> productName) {
+        List<Purchase> targetPurchase = purchaseRepository.findPurchasesByProductName(productName);
+        if (!targetPurchase.isEmpty()) {
+            return targetPurchase;
+        } else {
+            throw new NotFoundException(Constants.ERROR_NOT_FOUND);
+        }
+    }
+
     public String deletePurchaseById(String purchaseId) {
         boolean doesTargetProductExist = purchaseRepository.existsById(purchaseId);
         if (doesTargetProductExist) {

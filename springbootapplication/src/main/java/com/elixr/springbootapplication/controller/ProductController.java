@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @Validated
@@ -48,12 +49,6 @@ public class ProductController {
 
         Product targetProduct = productService.findProductByProductId(id);
         return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, targetProduct), HttpStatus.OK);
-    }
-
-    @GetMapping("/purchases/purchases")
-    public ResponseEntity<?> getPurchasesByProductName(@RequestParam(value = "productName") String productName) {
-        List<Purchase> targetProducts = productService.findPurchasesByProductName(productName);
-        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, targetProducts), HttpStatus.OK);
     }
 
     @PatchMapping("/products/{productId}")
