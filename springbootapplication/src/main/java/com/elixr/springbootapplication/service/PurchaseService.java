@@ -38,10 +38,10 @@ public class PurchaseService {
         return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, getPurchasesById), HttpStatus.OK);
     }
 
-    public List<Purchase> findPurchasesByProductName(Optional<String> productName) {
+    public ResponseEntity<?> getByProductName(Optional<String> productName) {
         List<Purchase> targetPurchase = purchaseRepository.findPurchasesByProductName(productName);
         if (!targetPurchase.isEmpty()) {
-            return targetPurchase;
+            return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, targetPurchase), HttpStatus.OK);
         } else {
             throw new NotFoundException(Constants.ERROR_NOT_FOUND);
         }
