@@ -3,9 +3,7 @@ package com.elixr.springbootapplication.service;
 import com.elixr.springbootapplication.constants.Constants;
 import com.elixr.springbootapplication.exception.NotFoundException;
 import com.elixr.springbootapplication.model.Product;
-import com.elixr.springbootapplication.model.Purchase;
 import com.elixr.springbootapplication.repository.ProductRepository;
-import com.elixr.springbootapplication.repository.PurchaseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +14,6 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
-    private final PurchaseRepository purchaseRepository;
 
     @Override
     public void addNewProduct(Product product) {

@@ -1,7 +1,6 @@
 package com.elixr.springbootapplication.service;
 
 import com.elixr.springbootapplication.model.Product;
-import com.elixr.springbootapplication.model.Purchase;
 
 import java.util.List;
 
