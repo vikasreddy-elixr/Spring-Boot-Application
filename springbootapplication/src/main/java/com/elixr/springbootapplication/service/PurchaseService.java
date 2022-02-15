@@ -3,7 +3,9 @@ package com.elixr.springbootapplication.service;
 import com.elixr.springbootapplication.constants.Constants;
 import com.elixr.springbootapplication.exception.NotFoundException;
 import com.elixr.springbootapplication.model.Purchase;
+import com.elixr.springbootapplication.model.User;
 import com.elixr.springbootapplication.repository.PurchaseRepository;
+import com.elixr.springbootapplication.repository.UserRepository;
 import com.elixr.springbootapplication.responses.SuccessResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,14 +15,17 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
-
 @Service
 public class PurchaseService {
-    PurchaseRepository purchaseRepository;
 
-    public PurchaseService(PurchaseRepository purchaseRepository) {
+   private final UserRepository userRepository;
+   private final PurchaseRepository purchaseRepository;
+
+    public PurchaseService(UserRepository userRepository, PurchaseRepository purchaseRepository) {
+        this.userRepository = userRepository;
         this.purchaseRepository = purchaseRepository;
     }
+
 
     public ResponseEntity<?> postPurchase(@Valid Purchase purchase) {
         Purchase postPurchases = purchaseRepository.save(purchase);
@@ -57,4 +62,9 @@ public class PurchaseService {
         return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, purchase), HttpStatus.OK);
     }
 
+    public ResponseEntity<?> getPurchasesByUserId(String userId) {
+        User userById = userRepository.findById(userId).orElseThrow(() -> new NotFoundException(Constants.ERROR_NOT_FOUND));
+        String userName = userById.getUserName();
+        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, purchaseRepository.getPurchasesByUserName(userName)), HttpStatus.OK);
+    }
 }

@@ -51,4 +51,9 @@ public class PurchaseController {
     public ResponseEntity<?> patchPurchase(@PathVariable String purchaseId, @Valid Purchase purchases) {
         return ResponseEntity.ok(purchaseService.patchPurchase(purchaseId, purchases));
     }
+
+    @GetMapping("purchases/userid={userId}")
+    public ResponseEntity<?> getPurchasesByUserId(@PathVariable String userId) {
+        return purchaseService.getPurchasesByUserId(userId);
+    }
 }
