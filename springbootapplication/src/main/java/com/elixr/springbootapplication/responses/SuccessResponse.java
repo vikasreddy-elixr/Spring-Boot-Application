@@ -8,5 +8,6 @@ import lombok.Data;
 public class SuccessResponse {
 
     private String success;
-    private Object products;
+    private Object Data;
 }
+
