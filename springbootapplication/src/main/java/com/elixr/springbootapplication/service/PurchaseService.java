@@ -55,13 +55,14 @@ public class PurchaseService {
         return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, purchase), HttpStatus.OK);
     }
 
-    public ResponseEntity<?> getPurchaseByUserName(String userName) {
-        List<Purchase> purchase = purchaseRepository.findPurchasesByUserName(userName);
-        if (!purchase.isEmpty()) {
-            return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, purchase), HttpStatus.OK);
+    public ResponseEntity<?> getPurchasesByUserName(String userName) {
+        List<Purchase> purchaseList = purchaseRepository.findPurchasesByUserName(userName);
+        if (!purchaseList.isEmpty()) {
+            return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, purchaseList), HttpStatus.OK);
         } else {
             throw new NotFoundException(Constants.ERROR_NOT_FOUND);
         }
     }
 }
+
 

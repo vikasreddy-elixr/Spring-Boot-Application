@@ -7,7 +7,14 @@ import com.elixr.springbootapplication.responses.SuccessResponse;
 import com.elixr.springbootapplication.service.PurchaseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 
 import javax.validation.Valid;
 
@@ -26,11 +33,11 @@ public class PurchaseController {
     }
 
     @GetMapping("/purchases")
-    public ResponseEntity<?> getPurchaseByUserName(@RequestParam(value = "userName") String userName) {
+    public ResponseEntity<?> getPurchase(@RequestParam(value = "userName") String userName) {
         if (userName.isEmpty()) {
             return purchaseService.getPurchases();
         } else {
-            return purchaseService.getPurchaseByUserName(userName);
+            return purchaseService.getPurchasesByUserName(userName);
         }
     }
 
@@ -50,4 +57,5 @@ public class PurchaseController {
         return ResponseEntity.ok(purchaseService.patchPurchase(purchaseId, purchases));
     }
 }
+
 
