@@ -33,7 +33,7 @@ public class PurchaseController {
     }
 
     @GetMapping("/purchases")
-    public ResponseEntity<?> getPurchase(@RequestParam(value = "userName") String userName) {
+    public ResponseEntity<?> getPurchases(@RequestParam(value = "userName") String userName) {
         if (userName.isEmpty()) {
             return purchaseService.getPurchases();
         } else {
@@ -57,5 +57,6 @@ public class PurchaseController {
         return ResponseEntity.ok(purchaseService.patchPurchase(purchaseId, purchases));
     }
 }
+
 
 
