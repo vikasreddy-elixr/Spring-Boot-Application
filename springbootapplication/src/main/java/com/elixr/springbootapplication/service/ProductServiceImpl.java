@@ -43,8 +43,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public String deleteProductByProductId(String id) {
-        Boolean doesTargetProductExist = productRepository.existsById(id);
-        if(doesTargetProductExist) {
+        boolean doesTargetProductExist = productRepository.existsById(id);
+        if (doesTargetProductExist) {
             productRepository.deleteById(id);
             return Constants.PROMPT_PRODUCT_SUCCESSFUL_DELETION;
         } else {
