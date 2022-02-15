@@ -21,7 +21,7 @@ public class PurchaseService {
     private final PurchaseRepository purchaseRepository;
 
     public ResponseEntity<?> postPurchase(@Valid Purchase purchase) {
-        Purchase postPurchase= purchaseRepository.save(purchase);
+        Purchase postPurchase = purchaseRepository.save(purchase);
         return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, postPurchase), HttpStatus.OK);
     }
 
@@ -31,9 +31,9 @@ public class PurchaseService {
     }
 
     public ResponseEntity<?> getPurchaseById(String purchaseId) {
-        Optional<Purchase> getPurchaseById = purchaseRepository.findById(purchaseId);
-        getPurchaseById.orElseThrow(() -> new NotFoundException(Constants.ERROR_NOT_FOUND));
-        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, getPurchaseById), HttpStatus.OK);
+        Optional<Purchase> purchase = purchaseRepository.findById(purchaseId);
+        purchase.orElseThrow(() -> new NotFoundException(Constants.ERROR_NOT_FOUND));
+        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, purchase), HttpStatus.OK);
     }
 
     public String deletePurchaseById(String purchaseId) {
@@ -64,6 +64,7 @@ public class PurchaseService {
         }
     }
 }
+
 
 
 
