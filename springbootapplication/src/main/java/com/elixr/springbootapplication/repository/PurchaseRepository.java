@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface PurchaseRepository extends MongoRepository<Purchase, String> {
-    List<Purchase> getPurchaseByUserName(String UserName);
+    List<Purchase> getPurchasesByUserName(String UserName);
 }

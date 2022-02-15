@@ -18,8 +18,8 @@ import java.util.Optional;
 @Service
 public class PurchaseService {
 
-    private final PurchaseRepository purchaseRepository;
-    private final UserRepository userRepository;
+   private final UserRepository userRepository;
+   private final PurchaseRepository purchaseRepository;
 
     public PurchaseService(UserRepository userRepository, PurchaseRepository purchaseRepository) {
         this.userRepository = userRepository;
@@ -62,9 +62,9 @@ public class PurchaseService {
         return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, purchase), HttpStatus.OK);
     }
 
-    public ResponseEntity<?> getPurchaseByUserId(String userId) {
+    public ResponseEntity<?> getPurchasesByUserId(String userId) {
         User userById = userRepository.findById(userId).orElseThrow(() -> new NotFoundException(Constants.ERROR_NOT_FOUND));
         String userName = userById.getUserName();
-        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, purchaseRepository.getPurchaseByUserName(userName)), HttpStatus.OK);
+        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, purchaseRepository.getPurchasesByUserName(userName)), HttpStatus.OK);
     }
 }

@@ -53,7 +53,7 @@ public class PurchaseController {
     }
 
     @GetMapping("purchases/userid={userId}")
-    public ResponseEntity<?> getPurchaseByUserId(@PathVariable String userId) {
-        return purchaseService.getPurchaseByUserId(userId);
+    public ResponseEntity<?> getPurchasesByUserId(@PathVariable String userId) {
+        return purchaseService.getPurchasesByUserId(userId);
     }
 }
