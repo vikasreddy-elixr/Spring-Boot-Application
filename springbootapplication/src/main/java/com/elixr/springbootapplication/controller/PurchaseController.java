@@ -53,8 +53,8 @@ public class PurchaseController {
     }
 
     @PatchMapping("/purchases/{purchaseId}")
-    public ResponseEntity<?> patchPurchase(@PathVariable String purchaseId, @Valid Purchase purchases) {
-        return ResponseEntity.ok(purchaseService.patchPurchase(purchaseId, purchases));
+    public ResponseEntity<?> patchPurchase(@PathVariable String purchaseId, @Valid Purchase purchase) {
+        return ResponseEntity.ok(purchaseService.patchPurchase(purchaseId, purchase));
     }
 }
 

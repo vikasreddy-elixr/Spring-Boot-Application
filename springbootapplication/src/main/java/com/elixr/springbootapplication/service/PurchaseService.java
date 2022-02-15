@@ -21,8 +21,8 @@ public class PurchaseService {
     private final PurchaseRepository purchaseRepository;
 
     public ResponseEntity<?> postPurchase(@Valid Purchase purchase) {
-        Purchase postPurchases = purchaseRepository.save(purchase);
-        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, postPurchases), HttpStatus.OK);
+        Purchase postPurchase= purchaseRepository.save(purchase);
+        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, postPurchase), HttpStatus.OK);
     }
 
     public ResponseEntity<?> getPurchases() {
@@ -31,9 +31,9 @@ public class PurchaseService {
     }
 
     public ResponseEntity<?> getPurchaseById(String purchaseId) {
-        Optional<Purchase> getPurchasesById = purchaseRepository.findById(purchaseId);
-        getPurchasesById.orElseThrow(() -> new NotFoundException(Constants.ERROR_NOT_FOUND));
-        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, getPurchasesById), HttpStatus.OK);
+        Optional<Purchase> getPurchaseById = purchaseRepository.findById(purchaseId);
+        getPurchaseById.orElseThrow(() -> new NotFoundException(Constants.ERROR_NOT_FOUND));
+        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, getPurchaseById), HttpStatus.OK);
     }
 
     public String deletePurchaseById(String purchaseId) {
@@ -47,10 +47,10 @@ public class PurchaseService {
     }
 
     public ResponseEntity<?> patchPurchase(String id, @Valid Purchase purchase) {
-        Purchase patchPurchases = purchaseRepository.findById(id).orElseThrow(() -> new NotFoundException(Constants.ERROR_NOT_FOUND));
-        patchPurchases.setUserName(purchase.getUserName());
-        patchPurchases.setProductName(purchase.getProductName());
-        patchPurchases.setAmount(purchase.getAmount());
+        Purchase patchPurchase = purchaseRepository.findById(id).orElseThrow(() -> new NotFoundException(Constants.ERROR_NOT_FOUND));
+        patchPurchase.setUserName(purchase.getUserName());
+        patchPurchase.setProductName(purchase.getProductName());
+        patchPurchase.setAmount(purchase.getAmount());
         purchaseRepository.save(purchase);
         return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, purchase), HttpStatus.OK);
     }
