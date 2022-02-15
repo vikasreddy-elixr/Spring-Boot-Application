@@ -38,7 +38,7 @@ public class PurchaseController {
         if(productName.isEmpty()) {
             return purchaseService.getPurchases();
         } else {
-            return purchaseService.getPurchaseByProductName(productName);
+            return purchaseService.getPurchasesByProductName(productName);
         }
     }
 
