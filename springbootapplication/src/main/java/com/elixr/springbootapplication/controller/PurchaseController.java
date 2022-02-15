@@ -57,8 +57,3 @@ public class PurchaseController {
         return ResponseEntity.ok(purchaseService.patchPurchase(purchaseId, purchase));
     }
 }
-
-
-
-
-
