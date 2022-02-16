@@ -27,8 +27,8 @@ public class PurchaseService {
     }
 
     public ResponseEntity<?> postPurchase(@Valid Purchase purchase) {
-        Purchase postPurchases = purchaseRepository.save(purchase);
-        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, postPurchases), HttpStatus.OK);
+        Purchase postPurchase = purchaseRepository.save(purchase);
+        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, postPurchase), HttpStatus.OK);
     }
 
     public ResponseEntity<?> getPurchases() {

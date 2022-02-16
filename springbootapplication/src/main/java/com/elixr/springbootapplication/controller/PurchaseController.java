@@ -35,7 +35,7 @@ public class PurchaseController {
 
     @GetMapping("/purchases")
     public ResponseEntity<?> getPurchases(@RequestParam(value = "productName") Optional<String> productName) {
-        if(productName.isEmpty()) {
+        if (productName.isEmpty()) {
             return purchaseService.getPurchases();
         } else {
             return purchaseService.getPurchasesByProductName(productName);
@@ -54,8 +54,8 @@ public class PurchaseController {
     }
 
     @PatchMapping("/purchases/{purchaseId}")
-    public ResponseEntity<?> patchPurchase(@PathVariable String purchaseId, @Valid Purchase purchases) {
-        return ResponseEntity.ok(purchaseService.patchPurchase(purchaseId, purchases));
+    public ResponseEntity<?> patchPurchase(@PathVariable String purchaseId, @RequestBody @Valid Purchase purchase) {
+        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, purchaseService.patchPurchase(purchaseId, purchase)), HttpStatus.OK);
     }
 
     @GetMapping("purchases/userid={userId}")
@@ -63,7 +63,7 @@ public class PurchaseController {
         return purchaseService.getPurchasesByUserId(userId);
     }
 
-    @GetMapping("/purchases/userName")
+    @GetMapping("/purchases/users")
     public ResponseEntity<?> getPurchases(@RequestParam(value = "userName") String userName) {
         if (userName.isEmpty()) {
             return purchaseService.getPurchases();
