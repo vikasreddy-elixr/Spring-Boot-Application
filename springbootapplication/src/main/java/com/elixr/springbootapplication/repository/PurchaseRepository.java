@@ -12,4 +12,7 @@ public interface PurchaseRepository extends MongoRepository<Purchase, String> {
 
     List<Purchase> findPurchasesByProductName(Optional<String> productName);
     List<Purchase> getPurchasesByUserName(String UserName);
+    List<Purchase> findPurchasesByUserName(String userName);
+
 }
+
