@@ -62,4 +62,14 @@ public class PurchaseController {
     public ResponseEntity<?> getPurchasesByUserId(@PathVariable String userId) {
         return purchaseService.getPurchasesByUserId(userId);
     }
+
+    @GetMapping("/purchases/userName")
+    public ResponseEntity<?> getPurchases(@RequestParam(value = "userName") String userName) {
+        if (userName.isEmpty()) {
+            return purchaseService.getPurchases();
+        } else {
+            return purchaseService.getPurchasesByUserName(userName);
+        }
+    }
 }
+
