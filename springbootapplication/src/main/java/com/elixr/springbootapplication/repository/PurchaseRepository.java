@@ -10,8 +10,6 @@ import java.util.List;
 public interface PurchaseRepository extends MongoRepository<Purchase, String> {
 
     List<Purchase> findPurchasesByProductName(String productName);
-    List<Purchase> getPurchasesByUserName(String UserName);
-    List<Purchase> findPurchasesByUserName(String userName);
 
+    List<Purchase> getPurchasesByUserName(String userName);
 }
-

@@ -7,14 +7,7 @@ import com.elixr.springbootapplication.service.PurchaseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -33,12 +26,12 @@ public class PurchaseController {
     }
 
     @GetMapping("/purchases")
-    public ResponseEntity<?> getPurchases(@RequestParam(required = false, value = "productName") String productName, @RequestParam(required = false, value = "userName") String userName, @RequestParam(required = false, value = "userId") String userId ) {
-        if(StringUtils.hasText(productName)) {
+    public ResponseEntity<?> getPurchases(@RequestParam(required = false, value = "productName") String productName, @RequestParam(required = false, value = "userName") String userName, @RequestParam(required = false, value = "userId") String userId) {
+        if (StringUtils.hasText(productName)) {
             return purchaseService.getPurchasesByProductName(productName);
-        } else if(StringUtils.hasText(userName)) {
+        } else if (StringUtils.hasText(userName)) {
             return purchaseService.getPurchasesByUserName(userName);
-        } else if(StringUtils.hasText(userId)) {
+        } else if (StringUtils.hasText(userId)) {
             return purchaseService.getPurchasesByUserId(userId);
         } else {
             return purchaseService.getPurchases();

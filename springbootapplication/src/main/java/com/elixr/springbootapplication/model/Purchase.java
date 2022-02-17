@@ -25,5 +25,4 @@ public class Purchase {
     @Min(value = 0)
     private Integer amount;
     private LocalDate date = LocalDate.now();
-
 }

@@ -1,9 +1,9 @@
 package com.elixr.springbootapplication.service;
 
 import com.elixr.springbootapplication.constants.Constants;
-import com.elixr.springbootapplication.repository.UserRepository;
-import com.elixr.springbootapplication.model.User;
 import com.elixr.springbootapplication.exception.NotFoundException;
+import com.elixr.springbootapplication.model.User;
+import com.elixr.springbootapplication.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -52,5 +52,3 @@ public class UserServiceImpl implements UserService {
         }
     }
 }
-
-

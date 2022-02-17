@@ -77,7 +77,7 @@ public class PurchaseService {
     }
 
     public ResponseEntity<?> getPurchasesByUserName(String userName) {
-        List<Purchase> purchaseList = purchaseRepository.findPurchasesByUserName(userName);
+        List<Purchase> purchaseList = purchaseRepository.getPurchasesByUserName(userName);
         if (!purchaseList.isEmpty()) {
             return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, purchaseList), HttpStatus.OK);
         } else {
