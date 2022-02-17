@@ -22,6 +22,4 @@ public class User {
 
     @NotEmpty(message = "lastName is a mandatory field")
     private String lastName;
-
 }
-

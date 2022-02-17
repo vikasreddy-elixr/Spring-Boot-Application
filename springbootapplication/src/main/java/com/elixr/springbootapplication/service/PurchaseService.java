@@ -42,7 +42,7 @@ public class PurchaseService {
         return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, getPurchaseById), HttpStatus.OK);
     }
 
-    public ResponseEntity<?> getPurchasesByProductName(Optional<String> productName) {
+    public ResponseEntity<?> getPurchasesByProductName(String productName) {
         List<Purchase> targetPurchaseList = purchaseRepository.findPurchasesByProductName(productName);
         if (!targetPurchaseList.isEmpty()) {
             return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, targetPurchaseList), HttpStatus.OK);
@@ -85,4 +85,3 @@ public class PurchaseService {
         }
     }
 }
-
