@@ -3,7 +3,9 @@ package com.elixr.springbootapplication.model;
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 
 @Data
@@ -22,6 +24,4 @@ public class User {
 
     @NotEmpty(message = "lastName is a mandatory field")
     private String lastName;
-
 }
-

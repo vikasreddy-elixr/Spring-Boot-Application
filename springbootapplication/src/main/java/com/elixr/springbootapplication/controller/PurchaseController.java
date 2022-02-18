@@ -1,12 +1,12 @@
 package com.elixr.springbootapplication.controller;
 
-
 import com.elixr.springbootapplication.constants.Constants;
 import com.elixr.springbootapplication.model.Purchase;
 import com.elixr.springbootapplication.responses.SuccessResponse;
 import com.elixr.springbootapplication.service.PurchaseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.util.Optional;
 
 @RestController
 public class PurchaseController {
@@ -34,11 +33,17 @@ public class PurchaseController {
     }
 
     @GetMapping("/purchases")
-    public ResponseEntity<?> getPurchases(@RequestParam(value = "productName") Optional<String> productName) {
-        if(productName.isEmpty()) {
-            return purchaseService.getPurchases();
-        } else {
+    public ResponseEntity<?> getPurchases(@RequestParam(required = false, value = "productName") String productName,
+                                          @RequestParam(required = false, value = "userName") String userName,
+                                          @RequestParam(required = false, value = "userId") String userId) {
+        if (StringUtils.hasText(productName)) {
             return purchaseService.getPurchasesByProductName(productName);
+        } else if (StringUtils.hasText(userName)) {
+            return purchaseService.getPurchasesByUserName(userName);
+        } else if (StringUtils.hasText(userId)) {
+            return purchaseService.getPurchasesByUserId(userId);
+        } else {
+            return purchaseService.getPurchases();
         }
     }
 
@@ -54,22 +59,7 @@ public class PurchaseController {
     }
 
     @PatchMapping("/purchases/{purchaseId}")
-    public ResponseEntity<?> patchPurchase(@PathVariable String purchaseId, @Valid Purchase purchases) {
-        return ResponseEntity.ok(purchaseService.patchPurchase(purchaseId, purchases));
-    }
-
-    @GetMapping("purchases/userid={userId}")
-    public ResponseEntity<?> getPurchasesByUserId(@PathVariable String userId) {
-        return purchaseService.getPurchasesByUserId(userId);
-    }
-
-    @GetMapping("/purchases/userName")
-    public ResponseEntity<?> getPurchases(@RequestParam(value = "userName") String userName) {
-        if (userName.isEmpty()) {
-            return purchaseService.getPurchases();
-        } else {
-            return purchaseService.getPurchasesByUserName(userName);
-        }
+    public ResponseEntity<?> patchPurchase(@PathVariable String purchaseId, @RequestBody @Valid Purchase purchase) {
+        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, purchaseService.patchPurchase(purchaseId, purchase)), HttpStatus.OK);
     }
 }
-

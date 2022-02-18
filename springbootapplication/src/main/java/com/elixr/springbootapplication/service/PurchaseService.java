@@ -27,8 +27,8 @@ public class PurchaseService {
     }
 
     public ResponseEntity<?> postPurchase(@Valid Purchase purchase) {
-        Purchase postPurchases = purchaseRepository.save(purchase);
-        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, postPurchases), HttpStatus.OK);
+        Purchase postPurchase = purchaseRepository.save(purchase);
+        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, postPurchase), HttpStatus.OK);
     }
 
     public ResponseEntity<?> getPurchases() {
@@ -42,7 +42,7 @@ public class PurchaseService {
         return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, getPurchaseById), HttpStatus.OK);
     }
 
-    public ResponseEntity<?> getPurchasesByProductName(Optional<String> productName) {
+    public ResponseEntity<?> getPurchasesByProductName(String productName) {
         List<Purchase> targetPurchaseList = purchaseRepository.findPurchasesByProductName(productName);
         if (!targetPurchaseList.isEmpty()) {
             return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, targetPurchaseList), HttpStatus.OK);
@@ -77,7 +77,7 @@ public class PurchaseService {
     }
 
     public ResponseEntity<?> getPurchasesByUserName(String userName) {
-        List<Purchase> purchaseList = purchaseRepository.findPurchasesByUserName(userName);
+        List<Purchase> purchaseList = purchaseRepository.getPurchasesByUserName(userName);
         if (!purchaseList.isEmpty()) {
             return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, purchaseList), HttpStatus.OK);
         } else {
@@ -85,4 +85,3 @@ public class PurchaseService {
         }
     }
 }
-
