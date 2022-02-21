@@ -61,5 +61,6 @@ public class PurchaseController {
     @PatchMapping("/purchases/{purchaseId}")
     public ResponseEntity<?> patchPurchase(@PathVariable String purchaseId, @RequestBody @Valid Purchase purchase) {
         return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, purchaseService.patchPurchase(purchaseId, purchase)), HttpStatus.OK);
+
     }
 }

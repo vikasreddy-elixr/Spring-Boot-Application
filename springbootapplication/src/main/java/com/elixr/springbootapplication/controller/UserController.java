@@ -51,6 +51,6 @@ public class UserController {
     @DeleteMapping("users/{userId}")
     public ResponseEntity<?> deleteUser(@PathVariable("userId") String id) {
         userService.deleteUser(id);
-        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, id), HttpStatus.OK);
+        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, Constants.PROMPT_PRODUCT_SUCCESSFUL_DELETION), HttpStatus.OK);
     }
 }
