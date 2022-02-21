@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RestController
 public class PurchaseController {
@@ -37,7 +38,7 @@ public class PurchaseController {
                                           @RequestParam(required = false, value = "userName") String userName,
                                           @RequestParam(required = false, value = "userId") String userId) {
         if (StringUtils.hasText(productName)) {
-            return purchaseService.getPurchasesByProductName(productName);
+            return purchaseService.getPurchasesByProductName(Optional.of(productName));
         } else if (StringUtils.hasText(userName)) {
             return purchaseService.getPurchasesByUserName(userName);
         } else if (StringUtils.hasText(userId)) {
@@ -61,5 +62,6 @@ public class PurchaseController {
     @PatchMapping("/purchases/{purchaseId}")
     public ResponseEntity<?> patchPurchase(@PathVariable String purchaseId, @RequestBody @Valid Purchase purchase) {
         return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, purchaseService.patchPurchase(purchaseId, purchase)), HttpStatus.OK);
+
     }
 }
