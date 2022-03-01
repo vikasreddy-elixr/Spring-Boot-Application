@@ -39,8 +39,8 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler({HttpRequestMethodNotSupportedException.class})
-    public ResponseEntity<?> handleHttpRequestMethodNotSupportedException() {
-        return new ResponseEntity<>(buildErrorResponse(Constants.ERROR_BAD_REQUEST), HttpStatus.BAD_REQUEST);
+    public ResponseEntity<?> handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException exception) {
+        return new ResponseEntity<>(buildErrorResponse(exception.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(Exception.class)

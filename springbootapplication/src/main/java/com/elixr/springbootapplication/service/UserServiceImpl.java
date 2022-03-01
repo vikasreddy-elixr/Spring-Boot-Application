@@ -19,8 +19,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createUser(User user) {
-        return userRepo.insert(user);
+    public User createUser(User user,String userName) {
+        if(userRepo.existsUserByUserName(userName)) {
+            return userRepo.insert(user);
+        } else{
+            throw new NotFoundException(Constants.DUPLICATE_KEY);
+        }
     }
 
     @Override
@@ -34,13 +38,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUser(User user, String id) {
-        User existingUser = userRepo.findById(id).orElseThrow(() -> new NotFoundException(Constants.ERROR_NOT_FOUND));
-        existingUser.setUserName(user.getUserName());
-        existingUser.setFirstName(user.getFirstName());
-        existingUser.setLastName(user.getLastName());
-        userRepo.save(existingUser);
-        return existingUser;
+    public User updateUser(User user, String id,String userName) {
+        if(userRepo.existsUserByUserName(userName)) {
+            User existingUser = userRepo.findById(id).orElseThrow(() -> new NotFoundException(Constants.ERROR_NOT_FOUND));
+            existingUser.setUserName(user.getUserName());
+            existingUser.setFirstName(user.getFirstName());
+            existingUser.setLastName(user.getLastName());
+            userRepo.save(existingUser);
+            return existingUser;
+        }
+        else{
+            throw new NotFoundException(Constants.DUPLICATE_KEY);
+        }
     }
 
     @Override

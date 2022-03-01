@@ -66,8 +66,8 @@ public class PurchaseService {
         patchPurchase.setUserName(purchase.getUserName());
         patchPurchase.setProductName(purchase.getProductName());
         patchPurchase.setAmount(purchase.getAmount());
-        purchaseRepository.save(purchase);
-        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, purchase), HttpStatus.OK);
+        purchaseRepository.save(patchPurchase);
+        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, patchPurchase), HttpStatus.OK);
     }
 
     public ResponseEntity<?> getPurchasesByUserId(String userId) {

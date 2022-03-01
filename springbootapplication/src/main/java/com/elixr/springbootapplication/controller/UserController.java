@@ -29,13 +29,13 @@ public class UserController {
 
     @PostMapping("users")
     public ResponseEntity<?> createUser(@Valid @RequestBody User user) {
-        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, userService.createUser(user)), HttpStatus.CREATED);
+        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, userService.createUser(user, user.getUserName())), HttpStatus.OK);
     }
 
     @GetMapping("users")
     public ResponseEntity<?> getAllUsers() {
-        List<User> getuser = userService.getAllUsers();
-        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, getuser), HttpStatus.OK);
+        List<User> getUser = userService.getAllUsers();
+        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, getUser), HttpStatus.OK);
     }
 
     @GetMapping("users/{userId}")
@@ -45,7 +45,7 @@ public class UserController {
 
     @PatchMapping("users/{userId}")
     public ResponseEntity<?> updateUser(@PathVariable("userId") String id, @Valid @RequestBody User user) {
-        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, userService.updateUser(user, id)), HttpStatus.OK);
+        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, userService.updateUser(user, id,user.getUserName())), HttpStatus.OK);
     }
 
     @DeleteMapping("users/{userId}")
