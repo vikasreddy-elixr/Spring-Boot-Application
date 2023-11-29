@@ -48,6 +48,13 @@ public class ProductController {
         return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, targetProduct), HttpStatus.OK);
     }
 
+    @GetMapping("/products/{productId}")
+    public ResponseEntity<?> getProductByProductIds(@PathVariable(value = "productId") String id) {
+
+        Product targetProduct = productService.findProductByProductId(id);
+        return new ResponseEntity<>(new SuccessResponse(Constants.SUCCESS, targetProduct), HttpStatus.OK);
+    }
+
     @PatchMapping("/products/{productId}")
     public ResponseEntity<?> patchProduct(@PathVariable("productId") String id, @RequestBody @Valid Product product) {
 
