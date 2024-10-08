@@ -17,7 +17,7 @@ public class Product {
     @Id
     @GeneratedValue
     private String id;
-    @NotBlank(message = "Product name is a mandatory field cannot be blank")
+    @NotBlank(message = "Product name is a mandatory field")
     private String productName;
     @NotNull(message = "Quantity is a mandatory field")
     @Min(value = 0, message = "Quantity cannot be a negative value")
